@@ -7,6 +7,9 @@ Tenere instalado docker y terraform
 # Pasos a seguir
 ### 1. Una vez tenemos instalados los dos softwares necesarios, procedemos a importar a nuestra máquina el repositorio.
 ### 2. Ejecutamos Docker Desktop y accedemos a la ruta de la carpeta 'Terraform' en el terminal
+> **🚨 ATENCIÓN 🚨**  
+> ## Cabe mencionar que se ha de revisar los archivos main.tf y cambiar en provider docker host su valor según nuestro SO Para Windows: `"npipe:////.//pipe//docker_engine"` para UNIX: `"unix:///var/run/docker.sock"`
+
 ### 3. Ejecutamos el comando `terraform init` para inicializar terraform y que proceda con la instalación inicial de providers y recursos.
 ### 4. Aplicar la IAC con el comando `terraform apply -var-file="./prod.tfvars"` para aplicar las variables de entorno que deseemos (cambiar entre dev o prod en el archivo para levantar uno de los entornos)
 ### 5. Solicitará que introduzcamos una contraseña para Grafana y luego introducir yes para confirmar el apply de terraform.
