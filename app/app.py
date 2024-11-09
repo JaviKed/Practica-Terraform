@@ -12,7 +12,7 @@ app = Flask(__name__)
 is_production = os.getenv("ENV_TYPE") == 'prod'
 is_development = os.getenv("ENV_TYPE") == 'dev'
 #Configuracion DB y redis cache
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@dev_db:5432/db_prod'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@dev_db:5432/dev_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 if is_production:
