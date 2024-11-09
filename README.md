@@ -9,6 +9,7 @@ Tenere instalado docker y terraform
 ### 2. Ejecutamos Docker Desktop y accedemos a la ruta de la carpeta 'Terraform' en el terminal
 > **🚨 ATENCIÓN 🚨**  
 > ## Cabe mencionar que se ha de revisar los archivos main.tf y cambiar en provider docker host su valor según nuestro SO Para Windows: `"npipe:////.//pipe//docker_engine"` para UNIX: `"unix:///var/run/docker.sock"`
+> ## También es imporante para evitar errores comprobar que la opcion `Use containerd for pulling and storing images` en docker desktop esté desactivada
 
 ### 3. Ejecutamos el comando `terraform init` para inicializar terraform y que proceda con la instalación inicial de providers y recursos.
 ### 4. Aplicar la IAC con el comando `terraform apply -var-file="./prod.tfvars"` para aplicar las variables de entorno que deseemos (cambiar entre dev o prod en el archivo para levantar uno de los entornos)
