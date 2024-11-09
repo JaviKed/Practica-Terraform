@@ -64,7 +64,6 @@ module "nginx"{
   environment_type   = var.environment_type
   start = module.app.app_creada
   depends_on = [
-    module.db,
-    module.cache
+    module.app
   ]
 }
