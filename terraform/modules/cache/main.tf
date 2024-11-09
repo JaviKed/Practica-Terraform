@@ -28,21 +28,29 @@ resource "docker_container" "cache" {
     internal = 6379
     external = 6379
   }
+  #Limitación de recursos
+  cpu_shares = 512
+  memory     = var.redis_memory_limit
 
   volumes {
     volume_name    = docker_volume.redisdata.name
     container_path = "/data"
   }
-
+  # Configuración de Redis cache
   env = [
     "REDIS_SAVE=900 1", # Save if at least 1 key is modified within 900 seconds
-    "REDIS_APPENDONLY=yes" # Enable append-only file mode for durability
+    "REDIS_APPENDONLY=yes", # Enable append-only file mode for durability
+    "REDIS_MAXMEMORY=256mb",                # Limita la memoria máxima para Redis
+    "REDIS_MAXMEMORY_POLICY=allkeys-lru",   # Política de expulsión para liberar memoria en caso de alta carga
+    "REDIS_TCP_KEEPALIVE=60",               # Configuración para conexiones de larga duración
+    "REDIS_TIMEOUT=300",   
   ]
 
   command = ["redis-server", "--bind", "0.0.0.0"]
   networks_advanced {
     name = var.network_name
   }
+
 }
 
 # Add the Redis Commander container
